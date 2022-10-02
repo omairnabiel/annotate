@@ -11,19 +11,29 @@ const Canvas: Component = (props) => {
   let isDrawing = false;
   onMount(() => {
     shape = ShapeFactory.createObject("line");
-    context = canvas?.getContext("2d");
   });
   const onMouseDown = (event: MouseEvent) => {
-    if (!canvas || !context) return;
+    if (!canvas) return;
+    context = canvas?.getContext("2d");
+
+    if (!context) return;
 
     isDrawing = true;
-    shape.draw(context, event.clientX, event.clientY);
+    shape.draw(
+      context,
+      event.clientX - canvas.offsetLeft,
+      event.clientY - canvas.offsetTop
+    );
   };
 
   const onMouseMove = (event: MouseEvent) => {
     if (!canvas || !context || !isDrawing) return;
 
-    shape.draw(context, event.clientX, event.clientY);
+    shape.draw(
+      context,
+      event.clientX - canvas.offsetLeft,
+      event.clientY - canvas.offsetTop
+    );
   };
 
   const onMouseUp = () => {
