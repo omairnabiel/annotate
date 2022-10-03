@@ -15,7 +15,7 @@ const Canvas: Component = (props) => {
     shape = ShapeFactory.createObject("line");
     context = canvas?.getContext("2d");
 
-    if (!context) return;
+    if (!context || !shape) return;
 
     isDrawing = true;
     shape.draw(
