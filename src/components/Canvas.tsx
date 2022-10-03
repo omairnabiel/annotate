@@ -1,4 +1,4 @@
-import { Component, onMount } from "solid-js";
+import { Component } from "solid-js";
 import { ShapeFactory } from "../factory/shape.factory";
 import { Shape } from "../shapes/shape.base";
 
@@ -7,13 +7,12 @@ import styles from "./Canvas.module.scss";
 const Canvas: Component = (props) => {
   let canvas: HTMLCanvasElement | undefined = undefined;
   let context: CanvasRenderingContext2D | undefined | null;
-  let shape: Shape;
+  let shape: Shape | null;
   let isDrawing = false;
-  onMount(() => {
-    shape = ShapeFactory.createObject("line");
-  });
+
   const onMouseDown = (event: MouseEvent) => {
     if (!canvas) return;
+    shape = ShapeFactory.createObject("line");
     context = canvas?.getContext("2d");
 
     if (!context) return;
@@ -27,7 +26,7 @@ const Canvas: Component = (props) => {
   };
 
   const onMouseMove = (event: MouseEvent) => {
-    if (!canvas || !context || !isDrawing) return;
+    if (!canvas || !context || !isDrawing || !shape) return;
 
     shape.draw(
       context,
@@ -39,6 +38,7 @@ const Canvas: Component = (props) => {
   const onMouseUp = () => {
     isDrawing = false;
     context = null;
+    shape = null;
   };
 
   return (

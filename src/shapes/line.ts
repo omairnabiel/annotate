@@ -3,8 +3,8 @@ import { Shape } from "./shape.base";
 import { options } from "../store";
 
 export class Line extends Shape {
-  previousX: number = 0;
-  previousY: number = 0;
+  previousX: number | null = null;
+  previousY: number | null = null;
 
   constructor() {
     super();
@@ -15,8 +15,10 @@ export class Line extends Shape {
       positionX: number,
       positionY: number
     ) => {
-      this.previousX = positionX;
-      this.previousY = positionY;
+      if (this.previousX === null || this.previousY === null) {
+        this.previousX = positionX;
+        this.previousY = positionY;
+      }
 
       context.beginPath();
       context.moveTo(this.previousX, this.previousY);
@@ -26,6 +28,9 @@ export class Line extends Shape {
       context.lineCap = options.lineCap;
       context.stroke();
       context.closePath();
+
+      this.previousX = positionX;
+      this.previousY = positionY;
     };
   }
 }
