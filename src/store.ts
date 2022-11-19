@@ -3,7 +3,7 @@ import { createStore } from "solid-js/store";
 import { Shapes } from "./types/shapes";
 
 // initial state
-const shape: Shapes = "line";
+const shape: Shapes = "rectangle";
 const lineCap: CanvasLineCap = "round";
 
 export const [options, setOptions] = createStore({

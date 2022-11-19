@@ -20,6 +20,7 @@ const Canvas: Component = (props) => {
 
     isDrawing = true;
     shape.draw(
+      canvas,
       context,
       event.clientX - canvas.offsetLeft,
       event.clientY - canvas.offsetTop
@@ -30,6 +31,7 @@ const Canvas: Component = (props) => {
     if (!canvas || !context || !isDrawing || !shape) return;
 
     shape.draw(
+      canvas,
       context,
       event.clientX - canvas.offsetLeft,
       event.clientY - canvas.offsetTop

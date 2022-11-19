@@ -1,4 +1,5 @@
 import { Line } from "../shapes/line";
+import { Rectangle } from "../shapes/rectangle";
 import { Shape } from "../shapes/shape.base";
 import { Shapes } from "../types/shapes";
 
@@ -10,7 +11,7 @@ export class ShapeFactory {
       case "circle":
         return new Line();
       case "rectangle":
-        return new Line();
+        return new Rectangle();
       default:
         return new Line();
     }

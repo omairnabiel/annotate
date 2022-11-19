@@ -11,6 +11,7 @@ export class Line extends Shape {
     this.type = "line";
 
     this.draw = (
+      canvas: HTMLCanvasElement,
       context: CanvasRenderingContext2D,
       positionX: number,
       positionY: number
