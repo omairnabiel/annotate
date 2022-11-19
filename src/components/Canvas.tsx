@@ -1,6 +1,7 @@
 import { Component } from "solid-js";
 import { ShapeFactory } from "../factory/shape.factory";
 import { Shape } from "../shapes/shape.base";
+import { options } from "../store";
 
 import styles from "./Canvas.module.scss";
 
@@ -12,7 +13,7 @@ const Canvas: Component = (props) => {
 
   const onMouseDown = (event: MouseEvent) => {
     if (!canvas) return;
-    shape = ShapeFactory.createObject("line");
+    shape = ShapeFactory.createObject(options.shape);
     context = canvas?.getContext("2d");
 
     if (!context || !shape) return;
